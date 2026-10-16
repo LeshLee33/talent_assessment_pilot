@@ -1,0 +1,97 @@
+# Модель управленческих компетенций банка: 6 компетенций, 21 индикатор.
+# Источник: план пилота, раздел 3.5 «Матрица индикатор × метод».
+#
+# methods — какими методами измеряется индикатор:
+#   primary   — основной метод (● в матрице)
+#   secondary — дополнительный метод (○ в матрице)
+# Идентификаторы методов (sjt, sim1, sim2, questionnaire) описаны в scoring_rules.yaml.
+
+version: "0.1-draft"
+
+competencies:
+  - id: systems_thinking
+    name: "Системное мышление"
+    indicators:
+      - id: ST1
+        name: "Анализ и выделение главного"
+        methods: {sjt: primary, sim1: secondary, questionnaire: secondary}
+      - id: ST2
+        name: "Определение причинно-следственных связей"
+        methods: {sjt: primary, sim1: primary, questionnaire: secondary}
+      - id: ST3
+        name: "Комплексные решения, вариативность, оценка рисков"
+        methods: {sjt: primary, sim2: secondary, questionnaire: secondary}
+
+  - id: task_management
+    name: "Управление задачами"
+    indicators:
+      - id: TM1
+        name: "Планирование работы"
+        methods: {sjt: primary, questionnaire: secondary}
+      - id: TM2
+        name: "Распределение задач"
+        methods: {sjt: primary, questionnaire: secondary}
+      - id: TM3
+        name: "Постановка задач"
+        methods: {sjt: secondary, sim1: primary, questionnaire: secondary}
+      - id: TM4
+        name: "Контроль и обратная связь по выполнению"
+        methods: {sjt: secondary, sim1: primary, questionnaire: secondary}
+
+  - id: people_management
+    name: "Управление людьми"
+    indicators:
+      - id: PM1
+        name: "Формирование команды"
+        methods: {sjt: primary, questionnaire: secondary}
+      - id: PM2
+        name: "Развитие команды"
+        methods: {sjt: secondary, sim1: primary, questionnaire: secondary}
+      - id: PM3
+        name: "Мотивация, влияние на вовлечённость"
+        methods: {sjt: secondary, sim1: primary, questionnaire: secondary}
+
+  - id: relationships_influence
+    name: "Построение отношений и влияние"
+    indicators:
+      - id: RI1
+        name: "Позиционирование, установление контакта"
+        methods: {sim1: secondary, sim2: primary, questionnaire: secondary}
+      - id: RI2
+        name: "Умение слушать и слышать собеседника"
+        methods: {sim1: primary, sim2: primary, questionnaire: secondary}
+      - id: RI3
+        name: "Аргументация, вариативность аргументов"
+        methods: {sjt: secondary, sim2: primary, questionnaire: secondary}
+      - id: RI4
+        name: "Работа с возражениями, понимание потребностей"
+        methods: {sim1: secondary, sim2: primary, questionnaire: secondary}
+
+  - id: managerial_accountability
+    name: "Управленческая ответственность"
+    indicators:
+      - id: MA1
+        name: "Постановка амбициозных целей"
+        methods: {sjt: primary, questionnaire: secondary}
+      - id: MA2
+        name: "Настойчивость и вариативность в достижении целей"
+        methods: {sjt: secondary, sim2: primary, questionnaire: secondary}
+      - id: MA3
+        name: "Самостоятельность в принятии решений"
+        methods: {sjt: primary, questionnaire: secondary}
+      - id: MA4
+        name: "Критичность к результату, ответственность"
+        methods: {sjt: primary, sim1: secondary, questionnaire: secondary}
+
+  - id: change_management
+    name: "Управление изменениями"
+    indicators:
+      - id: CM1
+        name: "Трансляция позитивного отношения к изменениям"
+        methods: {sjt: secondary, sim2: primary, questionnaire: secondary}
+      - id: CM2
+        name: "Инновационность"
+        methods: {sjt: primary, sim2: secondary, questionnaire: secondary}
+      - id: CM3
+        name: "Гибкость и адаптивность"
+        methods: {sjt: secondary, sim2: primary, questionnaire: secondary}

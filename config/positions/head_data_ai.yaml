@@ -1,0 +1,17 @@
+# Профиль позиции «Руководитель в направлении Data AI».
+# ВНИМАНИЕ: целевые уровни ПРЕДВАРИТЕЛЬНЫЕ — предложены командой пилота
+# и требуют согласования с HR (план пилота, раздел 9, вопрос 2).
+
+id: head_data_ai
+name: "Руководитель в направлении Data AI"
+status: preliminary          # preliminary | approved
+status_note: "Предварительные целевые уровни, не согласованы с HR"
+
+# Целевой уровень по шкале 1–5 (допускается шаг 0.5)
+target_levels:
+  systems_thinking: 4.0
+  task_management: 3.5
+  people_management: 3.5
+  relationships_influence: 4.0
+  managerial_accountability: 4.0
+  change_management: 4.0

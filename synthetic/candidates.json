@@ -1,0 +1,61 @@
+{
+  "_comment": "Полностью вымышленные кандидаты для демо. Не являются реальными сотрудниками. Значение null = недостаточно данных (судья не нашёл подтверждающих цитат).",
+  "candidates": [
+    {
+      "id": "CAND-0001",
+      "profile_note": "Вымышленный кандидат. Профиль «сильный»: ровные высокие результаты.",
+      "position_id": "head_data_ai",
+      "scores": {
+        "ST1": {"sjt": 4, "sim1": 5, "questionnaire": 4},
+        "ST2": {"sjt": 4, "sim1": 4, "questionnaire": 4},
+        "ST3": {"sjt": 5, "sim2": 4, "questionnaire": 4},
+        "TM1": {"sjt": 3, "questionnaire": 4},
+        "TM2": {"sjt": 4, "questionnaire": 4},
+        "TM3": {"sjt": 4, "sim1": 3, "questionnaire": 4},
+        "TM4": {"sjt": 4, "sim1": 4, "questionnaire": 4},
+        "PM1": {"sjt": 4, "questionnaire": 4},
+        "PM2": {"sjt": 3, "sim1": 4, "questionnaire": 4},
+        "PM3": {"sjt": 4, "sim1": 3, "questionnaire": 4},
+        "RI1": {"sim1": 4, "sim2": 5, "questionnaire": 4},
+        "RI2": {"sim1": 4, "sim2": 4, "questionnaire": 4},
+        "RI3": {"sjt": 4, "sim2": 5, "questionnaire": 4},
+        "RI4": {"sim1": 4, "sim2": 4, "questionnaire": 4},
+        "MA1": {"sjt": 4, "questionnaire": 4},
+        "MA2": {"sjt": 4, "sim2": 3, "questionnaire": 4},
+        "MA3": {"sjt": 4, "questionnaire": 4},
+        "MA4": {"sjt": 4, "sim1": 3, "questionnaire": 4},
+        "CM1": {"sjt": 5, "sim2": 5, "questionnaire": 4},
+        "CM2": {"sjt": 5, "sim2": 4, "questionnaire": 5},
+        "CM3": {"sjt": 5, "sim2": 5, "questionnaire": 4}
+      }
+    },
+    {
+      "id": "CAND-0002",
+      "profile_note": "Вымышленный кандидат. Профиль «неровный»: сильный аналитик, слабее в работе с людьми; завышенная самооценка по ряду индикаторов.",
+      "position_id": "head_data_ai",
+      "scores": {
+        "ST1": {"sjt": 4, "sim1": 5, "questionnaire": 4},
+        "ST2": {"sjt": 4, "sim1": 4, "questionnaire": 4},
+        "ST3": {"sjt": 5, "sim2": 4, "questionnaire": 4},
+        "TM1": {"sjt": 3, "questionnaire": 4},
+        "TM2": {"sjt": null, "questionnaire": 4},
+        "TM3": {"sjt": 4, "sim1": 3, "questionnaire": 4},
+        "TM4": {"sjt": 3, "sim1": 4, "questionnaire": 4},
+        "PM1": {"sjt": 2, "questionnaire": 4},
+        "PM2": {"sjt": 1, "sim1": 2, "questionnaire": 4},
+        "PM3": {"sjt": 2, "sim1": 1, "questionnaire": 5},
+        "RI1": {"sim1": 2, "sim2": null, "questionnaire": 3},
+        "RI2": {"sim1": 2, "sim2": 2, "questionnaire": 3},
+        "RI3": {"sjt": 3, "sim2": 2, "questionnaire": 3},
+        "RI4": {"sim1": 2, "sim2": 1, "questionnaire": 3},
+        "MA1": {"sjt": 4, "questionnaire": 4},
+        "MA2": {"sjt": 3, "sim2": 3, "questionnaire": 4},
+        "MA3": {"sjt": 3, "questionnaire": 4},
+        "MA4": {"sjt": 4, "sim1": 3, "questionnaire": 4},
+        "CM1": {"sjt": 3, "sim2": 3, "questionnaire": 4},
+        "CM2": {"sjt": 3, "sim2": 2, "questionnaire": 4},
+        "CM3": {"sjt": 3, "sim2": 3, "questionnaire": 4}
+      }
+    }
+  ]
+}
