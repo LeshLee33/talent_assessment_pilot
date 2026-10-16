@@ -20,6 +20,18 @@ pip install -r requirements.txt
 uvicorn web.app:app --host 127.0.0.1 --port 8000
 ```
 
+Windows (PowerShell / cmd), из папки проекта:
+
+```bat
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python -m uvicorn web.app:app --host 127.0.0.1 --port 8000
+```
+
+Также можно запустить `python web\app.py` или кнопкой Run в IDE — приложение само добавит
+корень проекта в путь импорта (иначе была бы ошибка `No module named 'engine'`).
+
 - Главная страница: http://127.0.0.1:8000/
 - Swagger UI: http://127.0.0.1:8000/docs
 

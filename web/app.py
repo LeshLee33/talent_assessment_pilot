@@ -1,6 +1,7 @@
 """Веб-интерфейс и API демо Talent Assessment Pilot (FastAPI + Jinja2).
 
-Запуск:  uvicorn web.app:app --host 127.0.0.1 --port 8000
+Запуск из корня проекта:  uvicorn web.app:app --host 127.0.0.1 --port 8000
+или:                      python -m web.app  /  python web/app.py
 
 Расчёт полностью переиспользует engine.scoring (баллы индикаторов и компетенций)
 и engine.report (общий результат, сильные стороны, зоны развития, рекомендации).
@@ -11,8 +12,17 @@
 from __future__ import annotations
 
 import copy
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+WEB_DIR = Path(__file__).resolve().parent
+
+# Пакет engine лежит в корне проекта. Если приложение запущено не из корня
+# (python web/app.py, uvicorn из папки web, запуск из IDE), корня нет в sys.path.
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from fastapi import Body, FastAPI, HTTPException, Request
 from fastapi.encoders import jsonable_encoder
@@ -32,8 +42,6 @@ from engine.scoring import (
     validate_candidates,
 )
 
-ROOT = Path(__file__).resolve().parent.parent
-WEB_DIR = Path(__file__).resolve().parent
 CONFIG_DIR = ROOT / "config"
 CANDIDATES_PATH = ROOT / "synthetic" / "candidates.json"
 POSITION_ID = "head_data_ai"
@@ -232,3 +240,9 @@ async def _not_found(request: Request, exc: HTTPException):
         return JSONResponse(status_code=404, content={"detail": {"message": "Ресурс не найден", "problems": []}})
     return templates.TemplateResponse(request, "error.html",
                                       {"message": "Страница не найдена", "problems": []}, status_code=404)
+
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run(app, host="127.0.0.1", port=8000)
