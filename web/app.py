@@ -132,6 +132,9 @@ def merge_scores(stored: dict, overrides: dict) -> dict:
 
 
 def evaluate(candidate: dict, config: Config, overrides: dict | None = None) -> dict:
+    if candidate.get("position_id") not in (None, config.position["id"]):
+        raise DataError(422, f"Кандидат {candidate['id']} оценивается на позицию «{candidate['position_id']}», "
+                             f"а расчёт настроен на «{config.position['id']}»")
     cand = dict(candidate)
     if overrides:
         cand["scores"] = merge_scores(candidate["scores"], overrides)
