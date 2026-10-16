@@ -4,6 +4,7 @@
 
 id: head_data_ai
 name: "Руководитель в направлении Data AI"
+name_en: "Head of Data AI"
 status: preliminary          # preliminary | approved
 status_note: "Предварительные целевые уровни, не согласованы с HR"
 

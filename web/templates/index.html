@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Talent Assessment Pilot</h1>
+  <p class="muted">Демонстрационная система оценки компетенций кандидатов</p>
+</section>
+
+<section class="stats">
+  <div class="card stat">
+    <div class="stat__label">Целевая должность</div>
+    <div class="stat__value">{{ position.name_en or position.name }}</div>
+    <div class="muted small">{{ position.name }}</div>
+  </div>
+  <div class="card stat">
+    <div class="stat__label">Тестовых кандидатов</div>
+    <div class="stat__value">{{ candidates|length }}</div>
+    <div class="muted small">синтетические профили</div>
+  </div>
+  <div class="card stat">
+    <div class="stat__label">Модель компетенций</div>
+    <div class="stat__value">{{ competencies|length }}</div>
+    <div class="muted small">компетенций, шкала 1–5</div>
+  </div>
+</section>
+
+{% if position.status_note %}
+<div class="notice notice--warn">Профиль позиции: {{ position.status_note }}.</div>
+{% endif %}
+
+<section class="card">
+  <div class="card__head">
+    <h2>Кандидаты</h2>
+    <span class="muted small">Все кандидаты вымышленные</span>
+  </div>
+  <div class="candidate-list">
+    {% for c in candidates %}
+    <article class="candidate">
+      <div class="candidate__main">
+        <div class="candidate__id">{{ c.id }}</div>
+        <div class="muted small">{{ c.profile_note }}</div>
+      </div>
+      <a class="btn btn--primary" href="/candidates/{{ c.id }}">Открыть оценку</a>
+    </article>
+    {% else %}
+    <p class="muted">Нет кандидатов в synthetic/candidates.json.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="card">
+  <div class="card__head"><h2>Целевой профиль позиции</h2></div>
+  <ul class="target-list">
+    {% for c in competencies %}
+    <li><span>{{ c.name }}</span><span class="pill">{{ "%.1f"|format(c.target) }}</span></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}
