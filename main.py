@@ -62,7 +62,16 @@ def print_report(report: dict) -> None:
     print("=" * 84)
 
 
+def use_utf8_output() -> None:
+    # На Windows вывод в pipe или файл по умолчанию идёт в cp1251/cp866 —
+    # кириллица ломается при чтении как UTF-8. Фиксируем UTF-8 явно.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
+
+
 def main() -> int:
+    use_utf8_output()
     args = parse_args()
     try:
         config = load_config(args.config_dir, args.position)
