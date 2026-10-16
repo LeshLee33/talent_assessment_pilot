@@ -385,8 +385,15 @@ def assess_candidate(candidate: dict, config: Config) -> dict:
 
 
 def run_assessment(config: Config, candidates_data: dict, source: str = "candidates") -> dict:
-    _raise_if(validate_candidates(candidates_data, config.model, config.rules), source)
     pos = config.position
+    problems = validate_candidates(candidates_data, config.model, config.rules)
+    for cand in candidates_data.get("candidates") or []:
+        if isinstance(cand, dict) and cand.get("position_id") not in (None, pos["id"]):
+            problems.append(
+                f"кандидат {cand.get('id')}: оценивается на позицию «{cand['position_id']}», "
+                f"а расчёт запущен для «{pos['id']}»"
+            )
+    _raise_if(problems, source)
     return {
         "meta": {
             "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
