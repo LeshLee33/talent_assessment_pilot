@@ -1,4 +1,22 @@
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+.pytest_cache/
+
+# Окружение
 .venv/
+venv/
+.env
+.env.*
+
+# Результаты запусков
 output/
+
+# Временные файлы
+*.tmp
+*.log
+*.swp
+*~
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Ошибка — Talent Assessment Pilot{% endblock %}
+{% block content %}
+<section class="card card--dev">
+  <h2>{{ message }}</h2>
+  {% if problems %}
+  <ul>{% for p in problems %}<li>{{ p }}</li>{% endfor %}</ul>
+  {% endif %}
+  <a class="btn btn--ghost" href="/">← Вернуться к кандидатам</a>
+</section>
+{% endblock %}

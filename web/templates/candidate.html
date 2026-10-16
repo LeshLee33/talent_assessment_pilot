@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}{{ candidate_id }} — Talent Assessment Pilot{% endblock %}
+{% block content %}
+<div class="toolbar">
+  <a class="btn btn--ghost" href="/">← Вернуться к кандидатам</a>
+  <button class="btn btn--primary" id="evaluate-btn" type="button" disabled>Рассчитать оценку</button>
+</div>
+
+<section class="card">
+  <div class="meta-grid">
+    <div><div class="stat__label">ID кандидата</div><div class="stat__value">{{ candidate_id }}</div></div>
+    <div><div class="stat__label">Целевая должность</div>
+      <div class="stat__value">{{ position.name_en or position.name }}</div>
+      <div class="muted small">{{ position.name }}</div></div>
+  </div>
+  <p class="muted small" id="profile-note"></p>
+</section>
+
+<div id="status" class="notice" role="status" aria-live="polite">Загрузка данных кандидата…</div>
+
+<section class="card hidden" id="overall-card">
+  <div class="card__head"><h2>Общий результат оценки</h2><span class="muted small" id="generated-at"></span></div>
+  <div class="overall" id="overall"></div>
+</section>
+
+<section class="card hidden" id="competencies-card">
+  <div class="card__head">
+    <h2>Компетенции</h2>
+    <div class="legend small">
+      <span><i class="legend__bar"></i>текущий уровень</span>
+      <span><i class="legend__target"></i>целевой уровень</span>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="comp-table">
+      <thead>
+        <tr><th>Компетенция</th><th class="num">Оценка</th><th class="num">Цель</th>
+            <th class="num">Разница</th><th class="bar-col">Уровень (1–5)</th><th>Категория</th></tr>
+      </thead>
+      <tbody id="comp-body"></tbody>
+    </table>
+  </div>
+  <p class="muted small">Нажмите на строку, чтобы увидеть индикаторы и исходные баллы по методам.</p>
+</section>
+
+<div class="grid-2 hidden" id="summary-grid">
+  <section class="card card--good">
+    <h2>Сильные стороны</h2>
+    <ul class="clean" id="strengths"></ul>
+    <h3 class="small muted">Соответствует требованиям</h3>
+    <ul class="clean" id="meets"></ul>
+  </section>
+  <section class="card card--dev">
+    <h2>Зоны развития</h2>
+    <ul class="clean" id="development"></ul>
+  </section>
+</div>
+
+<section class="card hidden" id="recs-card">
+  <h2>Рекомендации</h2>
+  <ol class="recs" id="recommendations"></ol>
+</section>
+
+<section class="card hidden" id="flags-card">
+  <h2>Флаги качества данных</h2>
+  <ul class="clean" id="flags"></ul>
+</section>
+
+<section class="card card--muted">
+  <h2>Ограничения демо</h2>
+  <ul>
+    {% for l in limitations %}<li>{{ l }}</li>{% endfor %}
+  </ul>
+</section>
+{% endblock %}
+{% block scripts %}
+<script>window.CANDIDATE_ID = {{ candidate_id|tojson }};</script>
+<script src="{{ url_for('static', path='app.js') }}"></script>
+{% endblock %}

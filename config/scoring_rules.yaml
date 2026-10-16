@@ -58,3 +58,22 @@ gap_categories:
   - id: critical
     name: "Критичная зона развития"
     min_gap: null
+
+# Общий результат оценки (ДОПУЩЕНИЕ ПРОТОТИПА: в плане пилота правило не задано).
+# Доля = (число компетенций в категориях strength/meets) / (число оценённых компетенций).
+# Проверяется сверху вниз; наличие критичной зоны развития ограничивает результат
+# уровнем не выше «partial».
+overall_result:
+  match_categories: [strength, meets]
+  levels:
+    - id: full
+      name: "Профиль соответствует целевому"
+      min_match_share: 0.8
+    - id: partial
+      name: "Частичное соответствие профилю"
+      min_match_share: 0.5
+    - id: low
+      name: "Существенные разрывы с профилем"
+      min_match_share: 0.0
+  critical_category: critical
+  cap_if_critical: partial
