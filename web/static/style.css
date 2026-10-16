@@ -8,6 +8,7 @@
   --primary-dark: #2148c4;
   --header: #7e0b48;
   --header-text: #ffffff;
+  --footer: #61063b;
   --good: #1f9d63;
   --good-bg: #e8f6ef;
   --meets: #4b6bfb;
@@ -24,6 +25,10 @@
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
+  /* подвал прижат к низу окна даже на коротких страницах */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   background: var(--bg);
   color: var(--text);
   font: 15px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -157,7 +162,10 @@ ul.clean li.empty { color: var(--muted); justify-content: flex-start; }
 .prio--medium { color: var(--dev); }
 .prio--low { color: var(--good); }
 
-.footer { color: var(--muted); font-size: 12px; padding-top: 8px; padding-bottom: 32px; }
+main.container { width: 100%; flex: 1 0 auto; }
+.footer { background: var(--footer); color: rgba(255, 255, 255, .82); font-size: 12px; margin-top: 12px; }
+.footer__inner { padding-top: 16px; padding-bottom: 20px; }
+.footer a { color: #fff; }
 
 @media (max-width: 860px) {
   .overall { grid-template-columns: 1fr 1fr; }

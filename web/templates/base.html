@@ -23,10 +23,12 @@
   <main class="container">
     {% block content %}{% endblock %}
   </main>
-  <footer class="container footer">
-    Демонстрация методики на вымышленных данных. Результаты не подтверждают реальные качества человека
-    и не используются для кадровых решений. AI рекомендует — решение принимает человек.
-    · <a href="/docs">Swagger UI</a>
+  <footer class="footer">
+    <div class="container footer__inner">
+      Демонстрация методики на вымышленных данных. Результаты не подтверждают реальные качества человека
+      и не используются для кадровых решений. AI рекомендует — решение принимает человек.
+      · <a href="/docs">Swagger UI</a>
+    </div>
   </footer>
   {% block scripts %}{% endblock %}
 </body>
