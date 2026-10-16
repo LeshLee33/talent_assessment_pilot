@@ -31,6 +31,7 @@ from engine.scoring import (
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_DIR = ROOT / "config"
 CANDIDATES = ROOT / "synthetic" / "candidates.json"
+DEMO_IDS = [f"CAND-{i:04d}" for i in range(1, 9)]
 
 EXPECTED_MODEL = {
     "systems_thinking": ["ST1", "ST2", "ST3"],
@@ -103,7 +104,7 @@ class TestCompetencyModel:
 
     def test_synthetic_candidates_cover_all_indicators(self, config):
         data = load_json(CANDIDATES)
-        assert len(data["candidates"]) == 2
+        assert [c["id"] for c in data["candidates"]] == DEMO_IDS
         assert validate_candidates(data, config.model, config.rules) == []
 
 
@@ -154,7 +155,7 @@ class TestScoreCalculation:
         report = run_assessment(config, load_json(CANDIDATES))
         json.dumps(report, ensure_ascii=False)
         assert report["meta"]["position"]["status"] == "preliminary"
-        assert len(report["results"]) == 2
+        assert len(report["results"]) == len(DEMO_IDS)
 
 
 # ---------------------------------------------------------------------------
@@ -432,4 +433,4 @@ class TestValidationErrors:
             capture_output=True, text=True, encoding="utf-8",
         )
         assert proc.returncode == 0, proc.stderr
-        assert len(json.loads(out.read_text(encoding="utf-8"))["results"]) == 2
+        assert len(json.loads(out.read_text(encoding="utf-8"))["results"]) == len(DEMO_IDS)

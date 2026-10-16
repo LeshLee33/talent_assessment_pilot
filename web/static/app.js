@@ -139,7 +139,10 @@
 
     $("#strengths").innerHTML = listItems(r.strengths, "Компетенций выше цели на 0.5 и более нет");
     $("#meets").innerHTML = listItems(r.meets, "Нет");
-    $("#development").innerHTML = listItems(r.development_areas.concat(r.not_assessed), "Зон развития не выявлено");
+    // Неоценённые компетенции — отдельно: это нехватка данных, а не зона развития
+    $("#development").innerHTML = listItems(r.development_areas, "Зон развития не выявлено");
+    $("#not-assessed").innerHTML = listItems(r.not_assessed, "");
+    $("#not-assessed-block").hidden = !r.not_assessed.length;
 
     $("#recommendations").innerHTML = r.recommendations.map((rec) =>
       '<li><span class="prio prio--' + esc(rec.priority) + '">' + esc(PRIORITY[rec.priority] || rec.priority) +

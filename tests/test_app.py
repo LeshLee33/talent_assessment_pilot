@@ -7,6 +7,7 @@ from fastapi.testclient import TestClient
 
 from engine.report import overall_result, validate_overall_rules
 from engine.scoring import load_config, load_json, run_assessment
+from tests.test_scoring import DEMO_IDS
 from web.app import app
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -59,7 +60,8 @@ def test_list_and_details():
     r = client.get("/api/candidates")
     assert r.status_code == 200
     body = r.json()
-    assert body["count"] == 2 and body["position"]["name_en"] == "Head of Data AI"
+    assert body["count"] == len(DEMO_IDS) and body["position"]["name_en"] == "Head of Data AI"
+    assert [c["id"] for c in body["candidates"]] == DEMO_IDS
     d = client.get("/api/candidates/CAND-0002").json()
     assert len(d["competencies"]) == 6
     assert sum(len(c["indicators"]) for c in d["competencies"]) == 21
@@ -91,7 +93,7 @@ def test_pages():
     home = client.get("/")
     assert home.status_code == 200
     for text in ("Talent Assessment Pilot", "Демонстрационная система оценки компетенций кандидатов",
-                 "Head of Data AI", "CAND-0001", "CAND-0002", "Открыть оценку"):
+                 "Head of Data AI", "Открыть оценку", *DEMO_IDS):
         assert text in home.text
     page = client.get("/candidates/CAND-0001")
     assert page.status_code == 200
